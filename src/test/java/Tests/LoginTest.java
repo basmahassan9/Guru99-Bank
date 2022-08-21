@@ -3,15 +3,17 @@ package Tests;
 import base.baseTest;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-
+import utils.readXLFiles;
 
 
 public class LoginTest extends baseTest {
 
-    @Test
-    public void loginTest(){
-    login.addUserName("mngr432952");
-    login.addPaddword("atUjUra");
+    @Test(dataProviderClass = readXLFiles.class,dataProvider = "loginData")
+    public void loginTest(String username, String password){
+
+
+    login.addUserName(username);
+    login.addPaddword(password);
     login.clickLoginBtn();
     SoftAssert soft = new SoftAssert();
     soft.assertEquals(login.getText(),"Welcome To Manager's Page of Guru99 Bank","wrong text");
