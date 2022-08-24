@@ -11,7 +11,7 @@ public class LoginPage {
     public void addUserName(String username){
         driver.findElement(By.name("uid")).sendKeys(username);
     }
-    public void addPaddword(String pass){
+    public void addPassword(String pass){
         driver.findElement(By.name("password")).sendKeys(pass);
     }
     public void clickLoginBtn(){
@@ -19,6 +19,14 @@ public class LoginPage {
     }
 
     public String getText(){
-        return driver.findElement(By.xpath("//marquee[@class=\"heading3\"]")).getText();
+       return driver.findElement(By.xpath("//tr[@class=\"heading3\"]")).getText();
+    }
+
+    public void confirmAlert(){
+        driver.switchTo().alert().accept();
+    }
+    public String getAlertMsg(){
+
+        return driver.switchTo().alert().getText();
     }
 }
